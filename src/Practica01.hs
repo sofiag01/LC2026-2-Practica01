@@ -42,19 +42,38 @@ from0 :: Point -> Float
 from0 (x, y) = distance (0,0) (x, y)
 
 --Ejercicio 3
-data Haskellium = Undefined
+data Haskellium = Haskellium { --el constructor "Haskellium" recibirá 5 datos
+            name :: String,
+            lastName1 :: String,
+            lastName2 :: String,
+            location :: Point,
+            houseShape :: Shape
+} deriving (Show) --para que se imprima en la consola
 
 --Funcion para regresar el hijo de dos Haskelliums dado su nombre
 son :: Haskellium -> Haskellium -> String -> Haskellium
-son = undefined
+son p1 p2 sonName =   
+    Haskellium
+        sonName
+        (lastName1 p1)
+        (lastName1 p2)
+        (location p1)
+        (houseShape p1)   --se tomara como su hogar y locación la del primer padre
 
 --Funcion para calcular las unidades para construir la casa de un Haskellium
-houseCost :: Haskellium -> Float
-houseCost = undefined
+houseCost :: Haskellium -> Float  -- sumaremos las dos funciones anteriormente creadas
+houseCost person =
+    (perimeter figura * 2.5) + area figura -- el área de las paredes es el perimetro por la altura, más la área del techo que es el área de la figura
+    where figura = houseShape person  -- donde se encunetre la figura será el hogar del nuevo Haskellium c:
+
 
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
-timeToWork = undefined
+timeToWork person    --segun la formua del tiempo = distancia/velocidad         
+    | distance < 300 = distance / 30  --si la distancia es menor a 300 (bici)
+    | otherwise  = distance / 70 --en otro caso (moto)
+    where distance = from0 (location person) --al definir la distancia sabremos las unidades de tiempo que Hakellium necesita para llegar el punto de origen = lugar de trabajo
+
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
