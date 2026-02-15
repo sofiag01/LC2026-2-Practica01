@@ -78,11 +78,15 @@ timeToWork person    --segun la formua del tiempo = distancia/velocidad
 --LISTAS Y FUNCIONES
 --Ejercicio 1
 palindromo :: String -> Bool
-palindromo = undefined
+--usando funcion reverse para voltear la cadena
+palindromo xs = xs == reverse xs
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
-myFoldr = undefined
+-- caso base lista vacia
+myFoldr f acumulador [] = acumulador    --f es la funcion que recibe
+--caso recursivo, se evalua primero la cola y despues se aplica f a la cabeza
+myFoldr f acumulador (x:xs) = f x (myFoldr f acumulador xs)
 
 --Ejercicio 3
 conjuntoPotencia :: [a] -> [[a]]
@@ -92,13 +96,13 @@ conjuntoPotencia = undefined
 
 --Implementacion
 
-data OneTwoTree a = Void
-                  | Node a (OneTwoTree a)
-                  | Branch a (OneTwoTree a) (OneTwoTree a)
-                   deriving (Show)
+data OneTwoTree a = Void  --nodo vacio
+                  | Node a (OneTwoTree a)  --nodo con un elemento y un hijo
+                  | Branch a (OneTwoTree a) (OneTwoTree a)  --rama con un elemento y dos hijos
+                   deriving (Show)  --mostrar en terminal
 
 --Ejercicio 2
 suma :: OneTwoTree Int -> Int
-suma Void = 0
-suma (Node a b) = a + suma b
-suma (Branch a b1 b2) = a + suma b1 + suma b2
+suma Void = 0  --no hay ningun valor
+suma (Node a b) = a + suma b  --tomar el valor del nodo a y sumarlo al del nodo b
+suma (Branch a b1 b2) = a + suma b1 + suma b2  --tomar el valor del nodo com dos hijos y sumarlo al valor de cada uno de los hijos del nodo
