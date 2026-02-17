@@ -78,8 +78,12 @@ timeToWork person    --segun la formua del tiempo = distancia/velocidad
 --LISTAS Y FUNCIONES
 --Ejercicio 1
 palindromo :: String -> Bool
---usando funcion reverse para voltear la cadena
-palindromo xs = xs == reverse xs
+--funcion auxiliar para voltear la cadena
+recorrer :: String -> String
+recorrer [] = []
+recorrer (x:xs) = recorrer xs ++ [x]
+--comparar la cadena inicial con la cadena volteada
+palindromo xs = xs == recorrer xs
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
