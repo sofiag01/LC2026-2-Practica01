@@ -52,13 +52,15 @@ data Haskellium = Haskellium { --el constructor "Haskellium" recibirá 5 datos
 
 --Funcion para regresar el hijo de dos Haskelliums dado su nombre
 son :: Haskellium -> Haskellium -> String -> Haskellium
-son p1 p2 sonName =   
+son p1 p2 sonName =
     Haskellium
-        sonName
-        (lastName1 p1)
-        (lastName1 p2)
-        (location p1)
-        (houseShape p1)   --se tomara como su hogar y locación la del primer padre
+        { name = sonName
+        , lastName1 = lastName1 p1
+        , lastName2 = lastName1 p2
+        , location = location p1
+        , houseShape = houseShape p1
+        }
+--se tomara como su hogar y locación la del primer padre
 
 --Funcion para calcular las unidades para construir la casa de un Haskellium
 houseCost :: Haskellium -> Float  -- sumaremos las dos funciones anteriormente creadas
