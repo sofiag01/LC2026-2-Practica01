@@ -92,9 +92,11 @@ myFoldr f acumulador [] = acumulador    --f es la funcion que recibe
 --caso recursivo, se evalua primero la cola y despues se aplica f a la cabeza
 myFoldr f acumulador (x:xs) = f x (myFoldr f acumulador xs)
 
---Ejercicio 3
-conjuntoPotencia :: [a] -> [[a]]
-conjuntoPotencia = undefined
+--Ejercicio 3  (con las dudas resueltas en la ayudantía)
+conjuntoPotencia :: [a] -> [[a]] 
+conjuntoPotencia [] = [[]] --caso base si la lista está vacía
+conjuntoPotencia (x:xs) =  --Calculamos conjuntoPotencia xs, luego usamos listas por comprensión para agregar x a cada subconjunto y concatenamos ambas listas
+    conjuntoPotencia xs ++ [ x:ys | ys <- conjuntoPotencia xs ]
 
 --ARBOLES
 
